@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_websearch"
+        android:icon="@drawable/ic_toc_black_24dp"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/action_reply"
+                android:icon="@drawable/ic_message_black_24dp"
+                android:title="Contato" />
+
+            <item
+                android:icon="@drawable/ic_info_black_24dp"
+                android:id="@+id/action_replyall"
+                android:title="Sobre o Cuide-se" />
+
+        </menu>
+
+    </item>
+
+
+</menu>
