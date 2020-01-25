@@ -19,7 +19,7 @@ import static android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACK
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME = 5000;
+    private static int SPLASH_TIME = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

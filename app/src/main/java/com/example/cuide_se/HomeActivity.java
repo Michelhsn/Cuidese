@@ -3,8 +3,11 @@ package com.example.cuide_se;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -25,12 +28,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 import static android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
 
@@ -52,11 +59,33 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.drawer);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+
+
+        //FloatingActionButton fab = findViewById(R.id.fab);
+        /*fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             View decorView = getWindow().getDecorView();
@@ -80,21 +109,27 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position ==  0) {
-                    Intent homeIntent = new Intent(HomeActivity.this, MainActivity.class);
+                    Intent homeIntent = new Intent(HomeActivity.this, VideoActivity.class);
+                    homeIntent.putExtra("doenca", "doenca1");
                     startActivity(homeIntent);
                 }
                 if (position ==  1) {
-                    Toast.makeText(HomeActivity.this, "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana (HIV é a sigla em inglês). Esse vírus ataca o sistema imunológico, que é o responsável por defender o organismo de doenças.", Toast.LENGTH_SHORT).show();
+                    Intent homeIntent = new Intent(HomeActivity.this, VideoActivity.class);
+                    homeIntent.putExtra("doenca", "doenca2");
+                    startActivity(homeIntent);
                 }
                 if (position ==  2) {
-                    Toast.makeText(HomeActivity.this, "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana (HIV é a sigla em inglês). Esse vírus ataca o sistema imunológico, que é o responsável por defender o organismo de doenças.", Toast.LENGTH_SHORT).show();
-                }
+                    Intent homeIntent = new Intent(HomeActivity.this, VideoActivity.class);
+                    homeIntent.putExtra("doenca", "doenca3");
+                    startActivity(homeIntent);                }
                 if (position ==  3) {
-                    Toast.makeText(HomeActivity.this, "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana (HIV é a sigla em inglês). Esse vírus ataca o sistema imunológico, que é o responsável por defender o organismo de doenças.", Toast.LENGTH_SHORT).show();
-                }
+                    Intent homeIntent = new Intent(HomeActivity.this, VideoActivity.class);
+                    homeIntent.putExtra("doenca", "doenca4");
+                    startActivity(homeIntent);                }
                 if (position ==  4) {
-                    Toast.makeText(HomeActivity.this, "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana (HIV é a sigla em inglês). Esse vírus ataca o sistema imunológico, que é o responsável por defender o organismo de doenças.", Toast.LENGTH_SHORT).show();
-                }
+                    Intent homeIntent = new Intent(HomeActivity.this, VideoActivity.class);
+                    homeIntent.putExtra("doenca", "doenca5");
+                    startActivity(homeIntent);                }
             }
         });
         // so item click is done now check list view
@@ -102,6 +137,43 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+       /* if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_tools) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }*/
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
@@ -115,7 +187,12 @@ public class HomeActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
+
+    //@SuppressWarnings("StatementWithEmptyBody")
+
+
+
 
 
 
@@ -154,6 +231,13 @@ public class HomeActivity extends AppCompatActivity {
 
             return row;
         }
+
+
+
+
+
+
+
     }
 
 
