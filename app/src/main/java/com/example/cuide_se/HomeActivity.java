@@ -42,13 +42,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     ListView listView;
-    String mTitle[] = {"Aids", "HPV", "Herpes", "Sífilis", "Gonorréia"};
-    String mDescription[] = {"A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana.",
-            "HPV é um vírus que infecta a pele e as mucosas.",
-            "Herpes é uma doença causada por dois tipos de vírus.",
-            "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana.",
-            "A aids é a doença causada pela infecção do Vírus da Imunodeficiência Humana."};
-    int images[] = {R.drawable.aids, R.drawable.hpv, R.drawable.herpes, R.drawable.figuralogo, R.drawable.figuralogo};
+    String mTitle[] = {"AIDS", "Dengue", "Febre Amarela", "Sarampo", "Tuberculose"};
+    String mDescription[] = {"Doença sexualmente transmissível causada pelo vírus HIV.",
+            "Doença causada por vírus, através da picada de mosquitos Aedes Aegypti.",
+            "Doença  causada por vírus, através da picada de mosquitos infectados.",
+            "Doença infecciosa grave, causada por vírus.",
+            "Doença causada por bactéria, afeta principalmente os pulmões."};
+    int images[] = {R.drawable.aids1cinza, R.drawable.denguecinza, R.drawable.febreamarelacinza, R.drawable.sarampocinza, R.drawable.tuberculosecinza};
     // so our images and other things are set in array
 
     // now paste some images in drawable

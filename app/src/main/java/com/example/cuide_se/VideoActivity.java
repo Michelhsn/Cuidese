@@ -1,6 +1,7 @@
 package com.example.cuide_se;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -164,7 +166,7 @@ public class VideoActivity extends AppCompatActivity {
         };
 
         Handler h = new Handler();
-        h.postDelayed(r, 500);
+        h.postDelayed(r, 1000);
 
 
 
@@ -197,6 +199,46 @@ public class VideoActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+            setContentView(R.layout.fullscreen_video);
+            VideoView videoView = findViewById(R.id.video_view);
+
+
+
+            String videoPath = "";
+                videoPath = "android.resource://" + getPackageName() + "/" + R.raw.d1;
+            Uri uri = Uri.parse(videoPath);
+            videoView.setVideoURI(uri);
+            videoView.start();
+
+            MediaController mediaController = new MediaController(this);
+            videoView.setMediaController(mediaController);
+            mediaController.setAnchorView(videoView);
+
+            videoView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
     }
 }
 
